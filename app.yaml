@@ -1,0 +1,57 @@
+runtime: php74
+env: standard
+runtime_config:
+  document_root: .
+handlers:
+  - url: /(.*\.(gif|png|jpg|css|js))$
+    static_files: public/\1
+    upload: public/.*\.(gif|png|jpg|css|js)$
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+  - url: /static
+    static_dir: static
+env_variables:
+  LOG_CHANNEL: stderr 
+  LOG_STACKDRIVER_ENABLE: true
+  LOG_DEPRECATIONS_CHANNEL: null
+  LOG_LEVEL: debug
+  APP_KEY: base64:p07ZcCOlClpraKgrmAf/EphSvE6HH+xADskZPree7FM=
+  TMPDIR: /tmp
+  APP_STORAGE: /tmp
+  VIEW_COMPILED_PATH: /tmp
+  DB_CONNECTION: mysql
+  DB_HOST: 34.128.105.93
+  DB_PORT: 3306
+  DB_DATABASE: car_rental
+  DB_USERNAME: root
+  DB_PASSWORD: 8Q\8G&k.qHPd%rBu
+  MIDTRANS_URL: "https://api.sandbox.midtrans.com/v2/charge"
+  MIDTRANS_MERCHANT_ID: "G738122557"
+  MIDTRANS_CLIENT_ID: "SB-Mid-client-RZ7bfRGItamKca8q"
+  MIDTRANS_SERVER_KEY: "SB-Mid-server-nZY-w1LZcjmOMydMv7YeRODg"
+  CALLBACK_URL: "https://car-rental-408623.et.r.appspot.com/checkout/callback"
+  APP_NAME: "Google cloud vision"
+  APP_ENV: production
+  APP_DEBUG: true
+  APP_URL: "https://car-rental-408623.et.r.appspot.com"
+  ASSET_URL: ""
+  SESSION_DRIVER: cookie
+  QUEUE_CONNECTION: sync
+  MAIL_MAILER: smtp
+  MAIL_HOST: ""
+  MAIL_PORT: 465
+  MAIL_USERNAME: ""
+  MAIL_PASSWORD: ""
+  MAIL_ENCRYPTION: ssl
+  MAIL_FROM_ADDRESS:
+  MAIL_FROM_NAME: "Google cloud vision"
+  PUSHER_APP_ID:
+  PUSHER_APP_KEY:
+  PUSHER_APP_SECRET:
+  PUSHER_APP_CLUSTER: mt1
+  APP_SERVICES_CACHE: /tmp/services.php
+  APP_PACKAGES_CACHE: /tmp/packages.php
+  APP_CONFIG_CACHE: /tmp/config.php
+  APP_ROUTES_CACHE: /tmp/routes.php
