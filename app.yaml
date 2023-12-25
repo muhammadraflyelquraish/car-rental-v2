@@ -13,7 +13,9 @@ handlers:
   - url: /static
     static_dir: static
 env_variables:
-  LOG_CHANNEL: stderr 
+  GOOGLE_CLOUD_PROJECT_ID: car-rental-408623
+  GOOGLE_CLOUD_STORAGE_BUCKET: car-rental-image-bucket
+  LOG_CHANNEL: stderr
   LOG_STACKDRIVER_ENABLE: true
   LOG_DEPRECATIONS_CHANNEL: null
   LOG_LEVEL: debug

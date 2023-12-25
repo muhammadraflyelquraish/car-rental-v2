@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "car-rental-408623",
+  "private_key_id": "1173b036a196b249b921832dac2eac70c73985ab",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDh1VMVATW/4OkV\nQFb/VtM526wfUFgwH0L9fEnxfLcxWOQC96ovvwH/4fjkeyTkQyJZcHa0dqVb54zN\nGrTWGPYt3irK3dMBDCgmwaF8bBDcJNcOINX7oQSl7i8dkFjOZlRofdWl7dKpZ8e/\nNAv2Qvg0L/SfkrmyoiyemxfhOiU7rk4+LYL0UkZ5nc3itkryINZVDLOaWdfcuSX4\nYKLKBm0BVU/l94MppbqsQTg8ALEaMTvrskuvX8CLAmqsUyRludXcwKp2b0C7LHqd\nM6UdSPJo5IDrAEZXxKkkSFQyD0yPoK3pWinF5mnafBHhQmjuABgOexoyF8bnBdcx\ntqgoSfifAgMBAAECggEAUyqjgR3D9JjYXZonL7uC6FDMz29gOsCYhA9sj8E1Gbg5\nqBobE6BNFTXb2hC7olBS6wsuvADhnrnkMXh/VkU1C+lAaxtL5JvcgYFXfiGyB9CN\nXkebZiKDOrQ/p6yL997ZgO2ua3/sz7RHbFO3gAZjr5xlgwqe1nlA41wMbEZkhdhX\nGBkASH6/g/6gC1MGh1WJjyQzKg2d01qBSAumtGVa298DdElkmy+aGBIqK2nEm7ae\nBoapg5p93cvIgDV9ctDlk93Jh0WRaJDjOChJFQBOgUI6+F59bzEi4MRM7NjHngd5\nYeG2G1XN+Hd/sdoR6Rdx6CVwXADxbJLH8yBnCsfbsQKBgQD1WX7Er+altYvqllCL\nxdQiGGLuV6kLz/0s23OEABWzL9haPnxtuhNndAPr7DDes9k/bN5TVY2I8cxsIwin\nufMi+MC3cxUG/cn92hplNd/fqyo0m7Oc8ElvBrNrCzKbpkrPDeRnNTujTcBRMM8q\nJ9jPQT+xvGJyhKL5F6Ex55iklwKBgQDrovMyYHnBo8UinLaCkkkGSRjdc9BgGkPq\nk1fyL5Yr0enr/6iOnVwcFoRcyfZzzSpju1rZLI+fFoPg26TR4mi/lvfHFsBqs0Xq\nE9AELvjFgWtLcbmTlshUHUWuAW7fMRyvDu9OR7Edhjc6Ir49PrLBgMtZrfbzW0m2\nfFfnA4ilOQKBgBD3Y2DOmTCUYVyTkHZZ89V3wj+hKDt84pEbi91w9A80G84BzDD6\nUSUyTKMf7jE4VqmgKa+xltwFfJFtysdugHXGpe0JtEaLflBjqLefBiA9gempar5L\nj4hx+i5I0/MXiMzQtR69+6XLVqVGrszHfKK4bGMqF9S7f1miXK9KyK95AoGAJtIA\nuQL17DX761jgJKDPEQ8H3qwO31ZUbBf8PDUky3FY1X2YGm7IVwRKqDLJvIhHfIjI\nTdEulCoUbf4hqEZhtXa8uXsBFlMUqJy8/4NxjrBkqdhBl5QWyuzLpwArcO/ZZunR\n+RaMkm2jOZuxtctXjdOXLN4hOjSG716K6M9HOtkCgYEAnWYoQmutU9hgd5Ce9gdI\n1xK5ckIK8ft4wjPJIjD72arGs9ab3xm/rmO9dM7AN6D9SEEUH5gli/mFCnGQex+p\nVJzlyAyoz6CSH4doy/FbsUDrvtLQBwhxkQgmF1g2sw7c4lwshdmREP6I4k/PeMaP\ndPKwcKkD9udW82c0jI0j+3w=\n-----END PRIVATE KEY-----\n",
+  "client_email": "bucket-write-create@car-rental-408623.iam.gserviceaccount.com",
+  "client_id": "113445824546158523744",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bucket-write-create%40car-rental-408623.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -21,7 +21,7 @@
             @foreach($cars as $car)
             <div class="col-md-4">
                 <div class="car-wrap rounded ftco-animate">
-                    <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('cars') }}/{{ $car->images[0]->url }}');">
+                    <div class="img rounded d-flex align-items-end" style="background-image: url('{{ $car->images[0]->url }}');">
                     </div>
                     <div class="text">
                         <h2 class="mb-0"><a href="car-single.html">{{ $car->name }} <small>({{ $car->launch_year }})</small></a></h2>
@@ -29,22 +29,24 @@
                             <span class="cat">{{ $car->brand->name }}</span>
                             <p class="price ml-auto">{{ number_format($car->price_per_day, 0) }} <span>/hari</span></p>
                         </div>
+                        @if(count($rentedCars) > 0)
 
-
-                        <p class="d-flex mb-0 d-block"><a href="{{ route('car-detail', $car->id) }}" class="btn btn-primary py-2 mr-1">Sewa Sekarang</a> </p>
-                        <!-- @if(count($rentedCars) > 0)
-                                
-                        @foreach($rentedCars as $j => $rCar)
-                        @if($car->id == $rCar->car_id)
-                        <p class="d-flex mb-0 d-block"><span class="btn btn-danger py-2 mr-1">Sedang Rental</span> <small>Tersedia pada: <br> {{ date('d M Y', strtotime($rCar->end_date)) }} - {{ date('H:i', strtotime($rCar->pickup_time)) }}</small></p>
-                        @break
-                        @else
-                        <p class="d-flex mb-0 d-block"><a href="{{ route('car-detail', $car->id) }}" class="btn btn-primary py-2 mr-1">Sewa Sekarang</a> </p>
+                        @php $isExist = false @endphp
+                        @foreach($rentedCars as $rented)
+                        @if($car->id == $rented->car_id)
+                        @php $isExist = true @endphp
                         @endif
                         @endforeach
 
-                        @else -->
-                        <!-- @endif -->
+                        @if($isExist)
+                        <p class="d-flex mb-0 d-block"><span class="btn btn-danger py-2 mr-1">Sedang Rental</span> <small>Tersedia pada: <br> {{ date('d M Y', strtotime($rented->end_date)) }} - {{ date('H:i', strtotime($rented->pickup_time)) }}</small></p>
+                        @else
+                        <p class="d-flex mb-0 d-block"><a href="{{ route('car-detail', $car->id) }}" class="btn btn-primary py-2 mr-1">Sewa Sekarang</a> </p>
+                        @endif
+
+                        @else
+                        <p class="d-flex mb-0 d-block"><a href="{{ route('car-detail', $car->id) }}" class="btn btn-primary py-2 mr-1">Sewa Sekarang</a> </p>
+                        @endif
                     </div>
                 </div>
             </div>

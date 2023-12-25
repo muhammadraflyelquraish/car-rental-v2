@@ -8,8 +8,10 @@ use Illuminate\Http\Response;
 use Illuminate\View\View;
 // use App\Models\DriverStatus;
 
+
 use Yajra\DataTables\DataTables;
 use App\Models\Driver;
+use Google\Cloud\Storage\StorageClient;
 
 class DriverController extends Controller
 {
@@ -31,15 +33,15 @@ class DriverController extends Controller
             ->addColumn('action', function ($row) {
                 $button = '<div class="btn-group pull-right">';
                 $button .= '<a href="' . route('driver.show', $row->id) . '" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>';
-                $button .= '<button class="btn btn-sm btn-danger" id="delete" data-integrity="' . $row->id . '"><i class="fa fa-trash"></i></button>';
+                // $button .= '<button class="btn btn-sm btn-danger" id="delete" data-integrity="' . $row->id . '"><i class="fa fa-trash"></i></button>';
                 $button .= '</div>';
                 return $button;
             })
             ->editColumn('ktp_image', function ($row) {
-                return '<a href="' . asset('identity') . '/' . $row->ktp_image . '" target="_blank">Lihat KTP</a>';
+                return '<a href="' . $row->ktp_image . '" target="_blank">Lihat KTP</a>';
             })
             ->editColumn('sim_image', function ($row) {
-                return '<a href="' . asset('identity') . '/' . $row->sim_image . '" target="_blank">Lihat SIM</a>';
+                return '<a href="' . $row->sim_image . '" target="_blank">Lihat SIM</a>';
             })
             ->rawColumns(['action', 'ktp_image', 'sim_image'])
             ->toJson();
@@ -47,25 +49,44 @@ class DriverController extends Controller
 
     function store(Request $request)
     {
-        $KTPFile = $request->file('ktp_image');
-        $SIMFile = $request->file('sim_image');
+        $ktpLink = "";
+        $simLink = "";
 
-        $KTPImage = time() . '_KTP' . $KTPFile->getClientOriginalName();
-        $SIMImage = time() . '_SIM' . $SIMFile->getClientOriginalName();
+        $googleConfigFile = file_get_contents(base_path('/car-rental-408623-1173b036a196.json'));
+        $storage = new StorageClient([
+            'keyFile' => json_decode($googleConfigFile, true)
+        ]);
+        $storageBucketName = env('GOOGLE_CLOUD_STORAGE_BUCKET');
+        $bucket = $storage->bucket($storageBucketName);
 
-        $fileLocation = 'identity';
+        if ($request->file('ktp_image')) {
+            $ktpFile = $request->file('ktp_image');
+            $ktpFolder = 'ktp';
+            $ktpStoragePath = $ktpFolder . '/' . time() . "." . $ktpFile->getClientOriginalExtension();
+            $bucket->upload(file_get_contents($ktpFile), [
+                'name' => $ktpStoragePath
+            ]);
+            $ktpLink = 'https://storage.googleapis.com/' . $storageBucketName . '/' . $ktpStoragePath;
+        }
 
-        $customer = Driver::create([
+        if ($request->file('sim_image')) {
+            $simFile = $request->file('sim_image');
+            $simFolder = 'sim';
+            $simStoragePath = $simFolder . '/' . time() . "." . $simFile->getClientOriginalExtension();
+            $bucket->upload(file_get_contents($simFile), [
+                'name' => $simStoragePath
+            ]);
+            $simLink = 'https://storage.googleapis.com/' . $storageBucketName . '/' . $simStoragePath;
+        }
+
+        Driver::create([
             'name' => $request->name,
             'phone_number' => $request->phone_number,
             'address' => $request->address,
-            'ktp_image' => $KTPImage,
-            'sim_image' => $SIMImage,
+            'ktp_image' => $ktpLink,
+            'sim_image' => $simLink,
             'status' => 'Active',
         ]);
-
-        $KTPFile->move($fileLocation, $KTPImage);
-        $SIMFile->move($fileLocation, $SIMImage);
 
         return redirect()->route('driver.index')->with('success', 'Driver berhasil ditambahkan');
     }
@@ -78,40 +99,42 @@ class DriverController extends Controller
 
     function update(Request $request, Driver $driver)
     {
-        $fileLocation = 'identity';
-        $KTPImage = '';
-        $SIMImage = '';
+        $ktpLink = "";
+        $simLink = "";
+
+        $googleConfigFile = file_get_contents(base_path('/car-rental-408623-1173b036a196.json'));
+        $storage = new StorageClient([
+            'keyFile' => json_decode($googleConfigFile, true)
+        ]);
+        $storageBucketName = env('GOOGLE_CLOUD_STORAGE_BUCKET');
+        $bucket = $storage->bucket($storageBucketName);
 
         if ($request->file('ktp_image')) {
-            $file = $request->file('ktp_image');
-            $fileName = time() . $file->getClientOriginalName();
-
-            $file->move($fileLocation,  $fileName);
-
-            $KTPImage = $fileName;
-
-            $removeImage = public_path() . "/identity/" . $driver->ktp_image;
-            unlink($removeImage);
+            $ktpFile = $request->file('ktp_image');
+            $ktpFolder = 'ktp';
+            $ktpStoragePath = $ktpFolder . '/' . time() . "." . $ktpFile->getClientOriginalExtension();
+            $bucket->upload(file_get_contents($ktpFile), [
+                'name' => $ktpStoragePath
+            ]);
+            $ktpLink = 'https://storage.googleapis.com/' . $storageBucketName . '/' . $ktpStoragePath;
         }
 
         if ($request->file('sim_image')) {
-            $file = $request->file('sim_image');
-            $fileName = time() . $file->getClientOriginalName();
-
-            $file->move($fileLocation,  $fileName);
-
-            $SIMImage = $fileName;
-
-            $removeImage = public_path() . "/identity/" . $driver->sim_image;
-            unlink($removeImage);
+            $simFile = $request->file('sim_image');
+            $simFolder = 'sim';
+            $simStoragePath = $simFolder . '/' . time() . "." . $simFile->getClientOriginalExtension();
+            $bucket->upload(file_get_contents($simFile), [
+                'name' => $simStoragePath
+            ]);
+            $simLink = 'https://storage.googleapis.com/' . $storageBucketName . '/' . $simStoragePath;
         }
 
         $driver->update([
             'name' => $request->name,
             'phone_number' => $request->phone_number,
             'address' => $request->address,
-            'ktp_image' => $KTPImage ? $KTPImage : $driver->ktp_image,
-            'sim_image' => $SIMImage ? $SIMImage : $driver->sim_image,
+            'ktp_image' => $ktpLink ? $ktpLink : $driver->ktp_image,
+            'sim_image' => $simLink ? $simLink : $driver->sim_image,
             'status' => $request->status,
         ]);
 

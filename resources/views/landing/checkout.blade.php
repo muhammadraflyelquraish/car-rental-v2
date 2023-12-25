@@ -42,10 +42,11 @@
                                 <tr>
                                     <td>
                                         <div class="img text-center">
-                                            <img src="{{ asset('cars') }}/{{ $order->car->images[0]->url }}" width="120">
+                                            <img src="{{ $order->car->images[0]->url }}" width="120">
                                         </div>
                                     </td>
-                                    <td>{{ $order->car->name }}
+                                    <td>
+                                        {{ $order->car->name }}
                                         <br>
                                         <small>{{ $order->car->brand->name }}</small>
                                     </td>
@@ -56,11 +57,11 @@
                                 </tr>
                                 <tr>
                                     <th>Lokasi Penjemputan</th>
-                                    <td colspan="5">{{ $order->pickup_location ? $order->pickup_location : 'Tempat Rental' }}</td>
+                                    <td colspan="5">{{ $order->pickup_location ? $order->pickup_location : ' Tempat Rental' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Lokasi Pengembalian</th>
-                                    <td colspan="5">{{ $order->dropoff_location ? $order->dropoff_location : 'Tempat Rental' }}</td>
+                                    <td colspan="5">{{ $order->dropoff_location ? $order->dropoff_location : ' Tempat Rental' }}</td>
                                 </tr>
                             </tbody>
                         </table>

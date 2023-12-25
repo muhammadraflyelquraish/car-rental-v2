@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingController::class, 'home'])->name('home');
 Route::get('/about-us', [LandingController::class, 'aboutUs'])->name('about');
 Route::get('/list-cars', [LandingController::class, 'listCars'])->name('cars');
-Route::get('/car-detail/{carId}', [LandingController::class, 'carDetail'])->name('car-detail')->middleware('auth');
+Route::get('/car-detail/{carId}', [LandingController::class, 'carDetail'])->name('car-detail');
 Route::get('/contact-us', [LandingController::class, 'contactUs'])->name('contact');
 Route::get('get-image', [LandingController::class, 'getImage'])->name('get-image');
 

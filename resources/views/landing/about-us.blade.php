@@ -22,7 +22,7 @@
             <div class="col-md-6 wrap-about ftco-animate">
                 <div class="heading-section heading-section-white pl-md-5">
                     <span class="subheading">Tentang Kami</span>
-                    <h2 class="mb-4">Selamat Datang di Carbook</h2>
+                    <h2 class="mb-4">Selamat Datang di Hanafathan Rent Car</h2>
                     <p>
                         Kami menyediakan solusi transportasi yang nyaman dan handal bagi perjalanan Anda. Dengan berbagai pilihan mobil berkualitas terbaik, kami menghadirkan pengalaman menyewa mobil yang tak terlupakan.
                     </p>

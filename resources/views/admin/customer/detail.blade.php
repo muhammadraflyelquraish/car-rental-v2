@@ -55,8 +55,8 @@
                             <label class="col-md-3 col-form-label">KTP</label>
                             <div class="col-md-9">
                                 <input type="file" name="ktp_image" class="form-control">
-                                <a href="{{ asset('identity') }}/{{ $customer->ktp_image }}" target="_blank" data-gallery="">
-                                    <img src="{{ asset('identity') }}/{{ $customer->ktp_image }}" width="150" height="150">
+                                <a href="{{ $customer->ktp_image }}" target="_blank" data-gallery="">
+                                    <img src="{{ $customer->ktp_image }}" width="150" height="150">
                                 </a>
                             </div>
                         </div>
@@ -64,8 +64,8 @@
                             <label class="col-md-3 col-form-label">SIM</label>
                             <div class="col-md-9">
                                 <input type="file" name="sim_image" class="form-control">
-                                <a href="{{ asset('identity') }}/{{ $customer->sim_image }}" target="_blank" data-gallery="">
-                                    <img src="{{ asset('identity') }}/{{ $customer->sim_image }}" width="150" height="150">
+                                <a href="{{ $customer->sim_image }}" target="_blank" data-gallery="">
+                                    <img src="{{ $customer->sim_image }}" width="150" height="150">
                                 </a>
                             </div>
                         </div>

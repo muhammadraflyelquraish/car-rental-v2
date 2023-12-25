@@ -6,6 +6,7 @@ use App\Models\Brand;
 use App\Models\Car;
 use App\Models\CarAccessories;
 use App\Models\CarImage;
+use Google\Cloud\Storage\StorageClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Response;
@@ -78,16 +79,25 @@ class CarController extends Controller
 
             CarAccessories::insert($accessories);
 
+            $googleConfigFile = file_get_contents(base_path('/car-rental-408623-1173b036a196.json'));
+            $storage = new StorageClient([
+                'keyFile' => json_decode($googleConfigFile, true)
+            ]);
+            $storageBucketName = env('GOOGLE_CLOUD_STORAGE_BUCKET');
+            $bucket = $storage->bucket($storageBucketName);
             $cars = [];
             foreach ($request->file('images') as $i => $file) {
                 if ($value) {
-                    $fileName = time() . $file->getClientOriginalName();
-                    $fileLocation = 'cars';
-                    $file->move($fileLocation,  $fileName);
+                    $carFolder = 'car';
+                    $carStoragePath = $carFolder . '/' . time() . "." . $file->getClientOriginalExtension();
+                    $bucket->upload(file_get_contents($file), [
+                        'name' => $carStoragePath
+                    ]);
+                    $filename = 'https://storage.googleapis.com/' . $storageBucketName . '/' . $carStoragePath;
 
                     array_push($cars, [
                         'car_id' => $car->id,
-                        'url' => $fileName,
+                        'url' => $filename,
                         'sequence' => $i + 1,
                         'created_at' => now(),
                     ]);
@@ -130,33 +140,43 @@ class CarController extends Controller
                     ->where('name', $value)
                     ->update(['is_featured' => $request->accessories_value[$i]]);
             }
+
+            $googleConfigFile = file_get_contents(base_path('/car-rental-408623-1173b036a196.json'));
+            $storage = new StorageClient([
+                'keyFile' => json_decode($googleConfigFile, true)
+            ]);
+            $storageBucketName = env('GOOGLE_CLOUD_STORAGE_BUCKET');
+            $bucket = $storage->bucket($storageBucketName);
             if ($request->images) {
                 foreach ($request->file('images') as $i => $file) {
                     if ($value) {
                         $lastImage = CarImage::where('car_id', $car->id)->latest()->first();
                         $isReplaceImage = CarImage::where('car_id', $car->id)->skip($i)->first();
 
-                        $fileName = time() . $file->getClientOriginalName();
-                        $fileLocation = 'cars';
-
+                        $carFolder = 'car';
                         if ($isReplaceImage) {
-                            $removeImage = public_path() . "/cars/" . $isReplaceImage->url;
+                            $carStoragePath = $carFolder . '/' . time() . "." . $file->getClientOriginalExtension();
+                            $bucket->upload(file_get_contents($file), [
+                                'name' => $carStoragePath
+                            ]);
+                            $filename = 'https://storage.googleapis.com/' . $storageBucketName . '/' . $carStoragePath;
 
                             $isReplaceImage->update([
-                                'url' => $fileName,
+                                'url' => $filename,
                                 'updated_at' => now()
                             ]);
-
-                            $file->move($fileLocation,  $fileName);
-                            unlink($removeImage);
                         } else {
+                            $carStoragePath = $carFolder . '/' . time() . "." . $file->getClientOriginalExtension();
+                            $bucket->upload(file_get_contents($file), [
+                                'name' => $carStoragePath
+                            ]);
+                            $filename = 'https://storage.googleapis.com/' . $storageBucketName . '/' . $carStoragePath;
                             CarImage::create([
                                 'car_id' => $car->id,
-                                'url' => $fileName,
+                                'url' => $filename,
                                 'sequence' => $lastImage ? $lastImage->sequence + 1 : 1,
                                 'created_at' => now(),
                             ]);
-                            $file->move($fileLocation,  $fileName);
                         }
                     }
                 }

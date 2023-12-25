@@ -180,6 +180,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         // Yajra\DataTables\DataTablesServiceProvider::class,
         // Maatwebsite\Excel\ExcelServiceProvider::class,
+        FruitCake\Cors\CorsServiceProvider::class,
 
     ],
 

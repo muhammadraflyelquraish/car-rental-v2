@@ -76,6 +76,10 @@ class LandingController extends Controller
             ->load('images')
             ->load('accessories');
 
+        if (!auth()->user()) {
+            return redirect()->route('auth.index');
+        }
+
         $drivers = Driver::where('status', 'Active')->get();
 
         $payment_methods = PaymentMethod::get();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderPayment;
 use App\Models\OrderPaymentAction;
@@ -35,7 +36,12 @@ class CheckoutController extends Controller
             ->latest()
             ->first();
 
-        if (auth()->user()->customer->status_approval != 'Approved') {
+        $customer = Customer::where('user_id', auth()->user()->id)->first();
+        if (!$customer) {
+            return redirect()->route('home')->with('failed', 'Anda tidak bisa melakukan rental, silahkan registrasi akun sebagai customer terlebih dahulu');
+        }
+
+        if ($customer->status_approval != 'Approved') {
             return redirect()->route('home')->with('failed', 'Anda sedang dalam tahap document review');
         } else if ($activeOrder) {
             return redirect()->route('home')->with('failed', 'Anda sedang melakukan rental');
@@ -49,7 +55,7 @@ class CheckoutController extends Controller
             $order = Order::create([
                 'order_number' => $order_number,
                 'car_id' => $request->car_id,
-                'user_id' => $request->user_id,
+                'user_id' => auth()->user()->id,
                 'driver_id' => $request->driver_id,
                 'pickup_location' => $request->pick_up_location,
                 'dropoff_location' => $request->drop_off_location,
@@ -134,9 +140,9 @@ class CheckoutController extends Controller
 
     function callback(Request $request)
     {
-        $order = Order::where('order_number', $request->transaction_id)->first();
+        $order = Order::where('order_number', $request->query('order_id'))->first();
 
-        if ($request->transaction_status == 'settlement') {
+        if ($request->query('result') == 'success') {
             DB::transaction(function () use ($order) {
                 $order->update([
                     'order_status' => 'Waiting For Pickup'
@@ -145,8 +151,17 @@ class CheckoutController extends Controller
                     'payment_status' => 'Paid'
                 ]);
             });
+        } else {
+            DB::transaction(function () use ($order) {
+                $order->update([
+                    'order_status' => 'Canceled'
+                ]);
+                $order->payment->update([
+                    'payment_status' => 'Failed'
+                ]);
+            });
         }
 
-        return response('success', 200);
+        return redirect()->route('home');
     }
 }

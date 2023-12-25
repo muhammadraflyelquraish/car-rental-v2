@@ -55,7 +55,7 @@
                             <tr>
                                 <td>
                                     <div class="img text-center">
-                                        <img src="{{ asset('cars') }}/{{ $order->car->images[0]->url }}" width="120">
+                                        <img src="{{ $order->car->images[0]->url }}" width="120">
                                     </div>
                                 </td>
                                 <td>{{ $order->car->name }}

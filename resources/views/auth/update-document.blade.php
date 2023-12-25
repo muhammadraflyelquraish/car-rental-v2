@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Carbook | Register</title>
+    <title>Hanafathan Rent Car | Register</title>
 
     <link href="{{ asset('build/assets/admin') }}/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('build/assets/admin') }}/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -38,7 +38,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="ibox-content">
-                    <h2 class="font-bold">Carbook</h2>
+                    <h2 class="font-bold">Hanafathan Rent Car</h2>
                     <p>
                         Ubah data anda sesuai arahan admin... <br>
                         Arahan: <span class="text-warning">{{ auth()->user()->customer->note ?? '-' }}</span>
@@ -102,7 +102,7 @@
         <hr />
         <div class="row">
             <div class="col-md-12">
-                &copy; <small>{{ date('Y') }} &bullet; Carbook - Cepat & Mudah Sewa Mobil</small>
+                &copy; <small>{{ date('Y') }} &bullet; Hanafathan Rent Car - Cepat & Mudah Sewa Mobil</small>
             </div>
 
         </div>

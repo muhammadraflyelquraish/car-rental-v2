@@ -20,7 +20,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="car-details">
-                    <div class="img rounded" style="background-image: url('{{ asset('cars') }}/{{ $car->images[0]->url }}');"></div>
+                    <div class="img rounded" style="background-image: url('{{ $car->images[0]->url }}');"></div>
                     <div class="text text-center">
                         <span class="subheading">{{ $car->brand->name }}</span>
                         <h2>{{ $car->name }}</h2>
@@ -122,7 +122,6 @@
                                 @csrf
                                 @method('POST')
 
-                                <input type="hidden" class="form-control" name="user_id" value="{{ auth()->user()->id }}">
                                 <input type="hidden" class="form-control" name="car_id" value="{{ $car->id }}">
 
                                 <div class="form-group">

@@ -4,7 +4,7 @@
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2"><a href="#" class="logo">Car<span>book</span></a></h2>
-                    <p>Temukan Kenyamanan yang Sempurna: Carbook adalah Rental yang dapat Memenuhi Kebutuhan Anda.</p>
+                    <p>Temukan Kenyamanan yang Sempurna: Hanafathan Rent Car adalah Rental yang dapat Memenuhi Kebutuhan Anda.</p>
                     <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                         <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                         <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -38,7 +38,7 @@
                         <ul>
                             <li><span class="icon icon-map-marker"></span><span class="text">Jl. KH Abdullah Bin Nuh No.100, Sawah Gede, Kec. Cianjur, Kabupaten Cianjur, Jawa Barat 43212</span></li>
                             <li><a href="#"><span class="icon icon-phone"></span><span class="text">+62 858-6079-3006</span></a></li>
-                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">help@carbook.com</span></a></li>
+                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">help@hanafathan_rentcar.com</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <p>
-                    &copy; <small>{{ date('Y') }} &bullet; Carbook - Cepat & Mudah Sewa Mobil</small>
+                    &copy; <small>{{ date('Y') }} &bullet; Hanafathan Rent Car - Cepat & Mudah Sewa Mobil</small>
                 </p>
             </div>
         </div>

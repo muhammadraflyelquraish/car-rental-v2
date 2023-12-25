@@ -156,8 +156,8 @@
                                 <label>Gambar {{ $loop->iteration }}</label>
                                 <input type="file" name="images[]" class="form-control">
 
-                                <a href="{{ asset('cars') }}/{{$image->url}}" target="_blank" data-gallery="">
-                                    <img src="{{ asset('cars') }}/{{$image->url}}" width="150" height="150">
+                                <a href="{{ $image->url}}" target="_blank" data-gallery="">
+                                    <img src="{{ $image->url}}" width="150" height="150">
                                 </a>
                             </div>
                             @endforeach

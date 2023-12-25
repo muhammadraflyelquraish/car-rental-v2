@@ -195,7 +195,7 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 1,
                 'car_id' => 1,
-                'url' => 'avanza.png',
+                'url' => 'https://storage.googleapis.com/car-rental-image-bucket/car/avanza.png',
                 'sequence' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
@@ -203,7 +203,7 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 2,
                 'car_id' => 2,
-                'url' => 'sienta.png',
+                'url' => 'https://storage.googleapis.com/car-rental-image-bucket/car/sienta.png',
                 'sequence' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
@@ -211,7 +211,7 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 3,
                 'car_id' => 3,
-                'url' => 'fortuner.png',
+                'url' => 'https://storage.googleapis.com/car-rental-image-bucket/car/fortuner.png',
                 'sequence' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
@@ -219,7 +219,7 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 4,
                 'car_id' => 4,
-                'url' => 'city.jpg',
+                'url' => 'https://storage.googleapis.com/car-rental-image-bucket/car/city.jpg',
                 'sequence' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
@@ -227,7 +227,7 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 5,
                 'car_id' => 5,
-                'url' => 'accord.jpg',
+                'url' => 'https://storage.googleapis.com/car-rental-image-bucket/car/accord.jpg',
                 'sequence' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
@@ -235,7 +235,7 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 6,
                 'car_id' => 6,
-                'url' => 'brio.jpg',
+                'url' => 'https://storage.googleapis.com/car-rental-image-bucket/car/brio.jpg',
                 'sequence' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
@@ -243,7 +243,7 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 7,
                 'car_id' => 7,
-                'url' => 'brv.png',
+                'url' => 'https://storage.googleapis.com/car-rental-image-bucket/car/brv.png',
                 'sequence' => 1,
                 'created_at' => now(),
                 'updated_at' => now()

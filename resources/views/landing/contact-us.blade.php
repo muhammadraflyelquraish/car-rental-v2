@@ -39,7 +39,7 @@
                             <div class="icon mr-3">
                                 <span class="icon-envelope-o"></span>
                             </div>
-                            <p><span>Email:</span> <a href="mailto:help@carbook.com">help@carbook.com</a></p>
+                            <p><span>Email:</span> <a href="mailto:help@hanafathan_rentcar.com">help@hanafathan_rentcar.com</a></p>
                         </div>
                     </div>
                 </div>

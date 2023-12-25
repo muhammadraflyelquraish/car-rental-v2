@@ -9,7 +9,7 @@
             <div class="col-lg-8 ftco-animate">
                 <div class="text w-100 text-center mb-md-5 pb-md-5">
                     <h1 class="mb-4">Cepat &amp; Mudah Sewa Mobil</h1>
-                    <p style="font-size: 18px;">Temukan Kenyamanan yang Sempurna: Carbook hadir senantiasa berusaha memenuhi kebutuhan anda.</p>
+                    <p style="font-size: 18px;">Temukan Kenyamanan yang Sempurna: Hanafathan Rent Car hadir senantiasa berusaha memenuhi kebutuhan anda.</p>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                                     <tr>
                                         <td>
                                             <div class="img text-center">
-                                                <img src="{{ asset('cars') }}/{{ $activeOrder->car->images[0]->url }}" width="120">
+                                                <img src="{{ $activeOrder->car->images[0]->url }}" width="120">
                                             </div>
                                         </td>
                                         <td>{{ $activeOrder->car->name }}
@@ -216,7 +216,7 @@
                     @foreach($latestCars as $i => $car)
                     <div class="item">
                         <div class="car-wrap rounded ftco-animate">
-                            <div class="img rounded d-flex align-items-end" style="background-image: url('{{ asset('cars') }}/{{ $car->images[0]->url }}');">
+                            <div class="img rounded d-flex align-items-end" style="background-image: url('{{ $car->images[0]->url }}');">
                             </div>
                             <div class="text">
                                 <h2 class="mb-0"><a href="#">{{ $car->name }} <small>({{ $car->launch_year }})</small></a></h2>
@@ -261,7 +261,7 @@
             <div class="col-md-6 wrap-about ftco-animate">
                 <div class="heading-section heading-section-white pl-md-5">
                     <span class="subheading">Tentang Kami</span>
-                    <h2 class="mb-4">Selamat Datang di Carbook</h2>
+                    <h2 class="mb-4">Selamat Datang di Hanafathan Rent Car</h2>
                     <p>
                         Kami menyediakan solusi transportasi yang nyaman dan handal bagi perjalanan Anda. Dengan berbagai pilihan mobil berkualitas terbaik, kami menghadirkan pengalaman menyewa mobil yang tak terlupakan.
                     </p>
