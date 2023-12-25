@@ -8,6 +8,7 @@ use Illuminate\View\View;
 
 use Yajra\DataTables\DataTables;
 use App\Models\Order;
+use Illuminate\Http\Request;
 // use App\Models\OrderStatus;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -20,8 +21,31 @@ class OrderController extends Controller
 
     function create(): JsonResponse
     {
-        $orders = Order::with(['car', 'user', 'payment']);
-        return DataTables::of($orders)
+        $query = Order::with(['car', 'user', 'payment']);
+        $query->when(request('order_number'), function ($query) {
+            $query->where('order_number', '=', request('order_number'));
+        });
+        $query->when(request('customer'), function ($query) {
+            $query->whereHas('user', function ($q) {
+                $q->where('fullname', 'like', "%" . request('customer') . "%");
+            });
+        });
+        $query->when(request('car'), function ($query) {
+            $query->whereHas('car', function ($q) {
+                $q->where('name', 'like', "%" . request('car') . "%")->orWhere('number_plate', 'like', "%" . request('car') . "%");
+            });
+        });
+        $query->when(request('start_date'), function ($query) {
+            $query->whereDate('start_date', '>=', request('start_date'));
+        });
+        $query->when(request('end_date'), function ($query) {
+            $query->whereDate('end_date', '<=', request('end_date'));
+        });
+        $query->when(request('order_status'), function ($query) {
+            $query->where('order_status', request('order_status'));
+        });
+
+        return DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
                 $button = '<div class="btn-group pull-right">';
@@ -107,9 +131,9 @@ class OrderController extends Controller
         ]);
     }
 
-    public function export()
+    public function export(Request $request)
     {
         $time = date('dMY-His');
-        return Excel::download(new OrderExport, 'order-' . $time . '.xlsx');
+        return Excel::download(new OrderExport($request), 'order-' . $time . '.xlsx');
     }
 }
